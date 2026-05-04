@@ -74,7 +74,7 @@ http://localhost:5000
 
 ```
 
-- API Endpoints
+API Endpoints
 Upload
 ```bash
 POST /api/upload/pdf
@@ -89,34 +89,32 @@ POST /api/documents
 PUT /api/documents/:id
 ```
 
-- Example Workflow
-Upload document
-System extracts raw text
-Data is structured and validated
-Issues are highlighted
-User edits incorrect fields
-Document is saved and marked as validated
+### Example Workflow
+- Upload document
+- System extracts raw text
+- Data is structured and validated
+- Issues are highlighted
+- User edits incorrect fields
+- Document is saved and marked as validated
 
-Notes
-Some test documents contain intentional errors
-The system is designed to detect and report inconsistencies
+### Notes
+- Some test documents contain intentional errors
+- The system is designed to detect and report inconsistencies
 
-- Future Improvements
+### Future Improvements
 Line item extraction for PDFs
 Due date parsing
 Authentication system
 Role-based review workflow
 Better OCR accuracy tuning
-Unit & integration tests
-Docker support
 
-- AI Usage
+### AI Usage
 
 AI tools (ChatGPT, Gemini AI) were used for:
 
-Debugging
-Googling things
-Code optimization
+- Debugging
+- Googling things
+- Code optimization
 
 All implementation details are fully understood.
 
