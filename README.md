@@ -72,20 +72,22 @@ Backend runs on:
 
 http://localhost:5000
 
----
+```
 
 - API Endpoints
 Upload
+```bash
 POST /api/upload/pdf
 POST /api/upload/image
 POST /api/upload/txt
 POST /api/upload/csv
+```
 Documents
+```bash
 GET /api/documents
 POST /api/documents
 PUT /api/documents/:id
-
----
+```
 
 - Example Workflow
 Upload document
@@ -113,11 +115,9 @@ Docker support
 AI tools (ChatGPT, Gemini AI) were used for:
 
 Debugging
-Architecture guidance
+Googling things
 Code optimization
 
-All implementation details are fully understood and customized.
+All implementation details are fully understood.
 
-Submission
-GitHub Repository: [link]
-Live App: [link]
+Live App: []
