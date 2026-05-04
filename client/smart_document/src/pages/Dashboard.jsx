@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import DocumentReview from "../components/DocumentReview";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const Dashboard = () => {
   const [documents, setDocuments] = useState([]);
   const [selectedDoc, setSelectedDoc] = useState(null);
 
   const fetchDocs = async () => {
-    const res = await axios.get("http://localhost:5000/api/documents");
+    const res = await axios.get(`${API_URL}/api/documents`);
     setDocuments(res.data);
   };
 
