@@ -123,8 +123,8 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
     });
 
     return (
-        <div className="document-container">
-        <h2 className="title">Document Review</h2>
+    <div className="document-container">
+    <h2 className="title">Document Review</h2>
         <hr />
         <div className="info-grid">
             <div className="row">
