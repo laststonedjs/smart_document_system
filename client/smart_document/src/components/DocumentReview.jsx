@@ -1,7 +1,9 @@
-    import { useState, useEffect } from "react";
-    import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-    const DocumentReview = ({ data, onSaved, hideEdit }) => {
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
+const DocumentReview = ({ data, onSaved, hideEdit }) => {
     const [editableData, setEditableData] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [dateError, setDateError] = useState(null);
@@ -87,12 +89,12 @@
 
             if (editableData._id) {
             res = await axios.put(
-                `http://localhost:5000/api/documents/${editableData._id}`,
+                `${API_URL}/api/documents/${editableData._id}`,
                 payload
             );
             } else {
             res = await axios.post(
-                "http://localhost:5000/api/documents",
+                `${API_URL}/api/documents`,
                 payload
             );
             }
