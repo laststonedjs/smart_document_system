@@ -52,7 +52,7 @@ npm install
 
 Create .env file:
 
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=mongodb_connection_string
 PORT=5000
 
 Run server:
@@ -102,11 +102,10 @@ PUT /api/documents/:id
 - The system is designed to detect and report inconsistencies
 
 ### Future Improvements
-Line item extraction for PDFs
-Due date parsing
-Authentication system
-Role-based review workflow
-Better OCR accuracy tuning
+- Due date parsing
+- Authentication system
+- Role-based review workflow
+- Better OCR accuracy tuning
 
 ### AI Usage
 
