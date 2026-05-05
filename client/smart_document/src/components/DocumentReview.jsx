@@ -248,7 +248,7 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
                     onClick={handleSave}
                     className="btn btn-save"
                 >
-                    Save
+                    Confirm
                 </button>
 
                 <button
