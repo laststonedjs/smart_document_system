@@ -227,7 +227,7 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
                     onClick={handleSave}
                     className="btn btn-save"
                 >
-                    Save
+                    Save to dashboard
                 </button>
 
                 {!hideEdit && (
