@@ -14,10 +14,11 @@ const Dashboard = () => {
     const matchesStatus =
       statusFilter === "all" || doc.status === statusFilter;
 
-    const matchesSearch =
-      doc.supplier?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doc.documentNumber?.toLowerCase().includes(searchTerm.toLowerCase());
-
+    const supplier = doc.supplier ? doc.supplier.toLowerCase() : ""; 
+    const documentNumber = doc.documentNumber ? doc.documentNumber.toLowerCase() : "";
+    const search = searchTerm.toLowerCase();
+    const matchesSearch = supplier.includes(search) || documentNumber.includes(search);
+    
     return matchesStatus && matchesSearch;
   });
 

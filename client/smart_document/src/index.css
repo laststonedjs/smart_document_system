@@ -386,6 +386,7 @@ code {
   font-size: 14px;
   transition: all 0.2s ease;
   background-color: #fafafa;
+  color: #08060d;
 }
 
 .search-input::placeholder {
