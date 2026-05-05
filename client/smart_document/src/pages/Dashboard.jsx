@@ -7,6 +7,19 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 const Dashboard = () => {
   const [documents, setDocuments] = useState([]);
   const [selectedDoc, setSelectedDoc] = useState(null);
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredDocuments = documents.filter((doc) => {
+    const matchesStatus =
+      statusFilter === "all" || doc.status === statusFilter;
+
+    const matchesSearch =
+      doc.supplier?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      doc.documentNumber?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return matchesStatus && matchesSearch;
+  });
 
   const fetchDocs = async () => {
     const res = await axios.get(`${API_URL}/api/documents`);
@@ -27,10 +40,28 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: "2rem" }}>
-      {/* <h1 className="dashboard-title">Dashboard</h1> */}
+      {/* Filters */}
+      <div className="filter-container">
+        <input
+          type="text"
+          placeholder="Search by supplier or number..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="status-select"
+        >
+          <option value="all">All</option>
+          <option value="validated">Validated</option>
+          <option value="needs_review">Needs Review</option>
+        </select>
+      </div>
 
       <div className="dashboard">
-        {documents.map((doc) => (
+        {filteredDocuments.map((doc) => (
             <div key={doc._id} className="card">
             <div className="card-header">
                 <h3>{doc.supplier || "Unknown"}</h3>
