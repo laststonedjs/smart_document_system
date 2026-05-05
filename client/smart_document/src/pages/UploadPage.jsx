@@ -5,7 +5,7 @@ import DocumentReview from "../components/DocumentReview";
 // helpers
 import { getEndpoint } from "../helpers/getEndpoint";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+// const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const UploadPage = () => {
   const [file, setFile] = useState(null);
@@ -32,7 +32,7 @@ const UploadPage = () => {
       setLoading(true);
 
       const res = await axios.post(
-        `${API_URL}/api/upload/${type}`,
+        `http://localhost:5000/api/upload/${type}`,
         formData
       );
 
