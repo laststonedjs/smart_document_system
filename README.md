@@ -117,4 +117,4 @@ AI tools (ChatGPT, Gemini AI) were used for:
 
 All implementation details are fully understood.
 
-Live App: []
+Live App: (https://smart-document-system-zeta.vercel.app/)
