@@ -106,6 +106,7 @@ PUT /api/documents/:id
 - Authentication system
 - Role-based review workflow
 - Better OCR accuracy tuning
+- Export (PDF, CSV, Excel)
 
 ### AI Usage
 
