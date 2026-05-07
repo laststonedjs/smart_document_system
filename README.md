@@ -42,8 +42,8 @@ The system is designed to handle **real-world imperfect data**, including OCR-ba
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/laststonedjs/smart-document-engine.git
-cd smart-document-engine
+git clone https://github.com/laststonedjs/smart-document-system.git
+cd smart-document
 
 
 2. Backend Setup
