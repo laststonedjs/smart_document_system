@@ -41,8 +41,6 @@ The system is designed to handle **real-world imperfect data**, including OCR-ba
 
 ```bash
 git clone https://github.com/laststonedjs/smart-document-system.git
-cd smart-document
-
 
 2. Backend Setup
 cd server
@@ -54,20 +52,17 @@ MONGO_URI=mongodb_connection_string
 PORT=5000
 
 Run server:
-
 node src/app.js
 
 3. Frontend Setup
-cd client/smart-document.engine
+cd client/smart-document
 npm install
 npm run dev
 
 Frontend runs on:
-
 http://localhost:5173
 
 Backend runs on:
-
 http://localhost:5000
 
 ```
