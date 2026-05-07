@@ -15,8 +15,6 @@ The system is designed to handle **real-world imperfect data**, including OCR-ba
 - CSV files (structured)
 - TXT files (semi-structured)
 
-> **Note:** Some documents intentionally contain incorrect or incomplete data.
-
 ---
 
 ## Tech Stack
