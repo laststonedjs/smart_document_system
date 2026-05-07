@@ -100,11 +100,9 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             }
 
             setEditableData(res.data);
-            console.log("UPDATED FROM BACKEND:", res.data);
             
             if(onSaved) onSaved(res.data);    
 
-            console.log("Saved:", res.data);
             alert("Saved successfully!");
             setEditMode(false);
             } catch (err) {

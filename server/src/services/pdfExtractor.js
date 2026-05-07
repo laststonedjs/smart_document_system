@@ -6,7 +6,6 @@ export const extractPDFData = (text) => {
   // SUPPLIER
   const supplierStart = normalizedText.indexOf("Supplier:"); // returns the position where the word starts
   const numberStart = normalizedText.indexOf("Number:");
-  console.log("normalized text: ", normalizedText);
 
   if (supplierStart !== -1 && numberStart !== -1) {
     data.supplier = normalizedText

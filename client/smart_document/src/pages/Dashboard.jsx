@@ -18,7 +18,7 @@ const Dashboard = () => {
     const documentNumber = doc.documentNumber ? doc.documentNumber.toLowerCase() : "";
     const search = searchTerm.toLowerCase();
     const matchesSearch = supplier.includes(search) || documentNumber.includes(search);
-    
+
     return matchesStatus && matchesSearch;
   });
 
@@ -64,23 +64,23 @@ const Dashboard = () => {
       <div className="dashboard">
         {filteredDocuments.map((doc) => (
             <div key={doc._id} className="card">
-            <div className="card-header">
-                <h3>{doc.supplier || "Unknown"}</h3>
-                <span className={`status ${doc.status}`}>
-                {doc.status}
-                </span>
-            </div>
-            <div className="card-stats">
-                <p><strong>Number:</strong> {doc.documentNumber}</p>
-                <p><strong>Type:</strong> {doc.documentType}</p>
-                <p><strong>Total:</strong> {doc.total} {doc.currency}</p>
-            </div>
-            <button 
-                onClick={() => setSelectedDoc(doc)}
-                className="btn view-btn"  
-            >
-                View
-            </button>
+              <div className="card-header">
+                  <h3>{doc.supplier || "Unknown"}</h3>
+                  <span className={`status ${doc.status}`}>
+                    {doc.status}
+                  </span>
+              </div>
+              <div className="card-stats">
+                  <span><strong>Number:</strong> {doc.documentNumber}</span>
+                  <span><strong>Type:</strong> {doc.documentType}</span>
+                  <span><strong>Total:</strong> {doc.total} {doc.currency}</span>
+              </div>
+              <button
+                  onClick={() => setSelectedDoc(doc)}
+                  className="btn view-btn"  
+              >
+                  View
+              </button>
             </div>
         ))}
       </div>
