@@ -1,7 +1,13 @@
 import express from "express";
 import { upload } from "../utils/upload.js";
-import { handleCSVUpload, handlePDFUpload, handleTXTUpload, handleImageUpload } from "../controllers/uploadController.js"
-
+// controllers
+import { 
+    handleCSVUpload, 
+    handlePDFUpload, 
+    handleTXTUpload, 
+    handleImageUpload 
+} from "../controllers/uploadController.js"
+// middleware
 import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
