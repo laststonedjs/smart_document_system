@@ -23,7 +23,16 @@ const Dashboard = () => {
   });
 
   const fetchDocs = async () => {
-    const res = await axios.get(`${API_URL}/api/documents`);
+    const token = localStorage.getItem("token");
+
+    const res = await axios.get(
+      `${API_URL}/api/documents`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      }
+    );
     setDocuments(res.data);
   };
 
