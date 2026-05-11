@@ -32,6 +32,12 @@ const Dashboard = () => {
     fetchDocs();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      setSelectedDoc(null);
+    };
+  }, []);
+
   const closeModal = () => setSelectedDoc(null);
 
   const handleSaved = async () => {
@@ -94,6 +100,7 @@ const Dashboard = () => {
           justifyContent: "center",
           alignItems: "center",
           zIndex: 1000,
+          pointerEvents: "auto"
         }}>
           <div className="modal-content" style={{
             backgroundColor: "#fff",
