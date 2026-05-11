@@ -1,34 +1,44 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import UploadPage from "./pages/UploadPage";
 import Dashboard from "./pages/Dashboard";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
-  const [page, setPage] = useState("upload");
+  const token = localStorage.getItem("token");
 
   return (
-    <div>
-      {/* NAVBAR */}
-      <div style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-        <div className="main-button">
-          <button 
-            onClick={() => setPage("upload")}
-            className="btn nav-btn-upload"  
-          >
-            Upload
-          </button>
-          <button 
-            onClick={() => setPage("dashboard")}
-            className="btn nav-btn-dashboard"
-          >
-              Dashboard
-          </button>
-        </div>
-      </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/login"
+          element={<LoginPage />}
+        />
 
-      {/* PAGES */}   
-      {page === "upload" && <UploadPage />}
-      {page === "dashboard" && <Dashboard />}
-    </div>
+        {token ? (
+          <>
+            <Route
+              path="/upload"
+              element={<UploadPage />}
+            />
+
+            <Route
+              path="/dashboard"
+              element={<Dashboard />}
+            />
+
+            <Route
+              path="*"
+              element={<Navigate to="/upload" />}
+            />
+          </>
+        ) : (
+          <Route
+            path="*"
+            element={<Navigate to="/login" />}
+          />
+        )}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
