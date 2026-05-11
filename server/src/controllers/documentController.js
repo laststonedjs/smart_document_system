@@ -32,6 +32,7 @@ export const saveDocument = async (req, res) => {
 
     const newDocument = new Document({
       ...data,
+      user: req.user.id,
       issues,
       status,
     });
@@ -47,7 +48,9 @@ export const saveDocument = async (req, res) => {
 
 export const getDocuments = async (req, res) => {
   try {
-    const documents = await Document.find().sort({ createdAt: -1 }); // take all from db and sort from the newest one
+    const documents = await Document.find({
+      user: req.user.id,
+    }).sort({ createdAt: -1 });
 
     res.json(documents);
   } catch (error) {
