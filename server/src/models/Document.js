@@ -16,6 +16,12 @@ const issueSchema = new mongoose.Schema({
 
 const documentSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
+    },
+    
     documentType: String,
     supplier: String,
     documentNumber: String,
@@ -34,7 +40,7 @@ const documentSchema = new mongoose.Schema(
       type: String,
       enum: ["uploaded", "needs_review", "validated", "rejected"],
       default: "uploaded",
-    },
+    }
   },
   { timestamps: true }
 );
