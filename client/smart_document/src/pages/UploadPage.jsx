@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 // components
 import DocumentReview from "../components/DocumentReview";
 // helpers
@@ -11,6 +12,7 @@ const UploadPage = () => {
   const [file, setFile] = useState(null);
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -31,9 +33,16 @@ const UploadPage = () => {
     try {
       setLoading(true);
 
+      const token = localStorage.getItem("token");
+
       const res = await axios.post(
         `${API_URL}/api/upload/${type}`,
-        formData
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
       );
 
       setResponse(res.data);
@@ -51,6 +60,15 @@ const UploadPage = () => {
 
   return (
     <div style={{ padding: "2rem", textAlign: "left" }}>
+      <div style={{ marginBottom: "1rem" }}>
+        <button
+          onClick={() => navigate("/dashboard")}
+          className="btn navigate-btn"
+        >
+          Go to Dashboard
+        </button>
+      </div>
+
       <h2>Upload Document</h2>
       <div className="upload-btn">
         <input type="file" onChange={handleFileChange}/>

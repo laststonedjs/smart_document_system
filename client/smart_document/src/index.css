@@ -150,6 +150,10 @@ code {
   background-color: #c0392b;
 }
 
+.navigate-btn {
+  background-color: #0f9f95;
+}
+
 .edit-btn {
   background-color:cornflowerblue;
   padding: 6px 12px;
