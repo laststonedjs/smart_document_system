@@ -32,7 +32,7 @@ export const saveDocument = async (req, res) => {
 
     const newDocument = new Document({
       ...data,
-      user: req.user.id,
+      user: req.user.userId,
       issues,
       status,
     });
@@ -49,7 +49,7 @@ export const saveDocument = async (req, res) => {
 export const getDocuments = async (req, res) => {
   try {
     const documents = await Document.find({
-      user: req.user.id,
+      user: req.user.userId,
     }).sort({ createdAt: -1 });
 
     res.json(documents);
@@ -79,6 +79,7 @@ export const updateDocument = async (req, res) => {
     const existing = await Document.findOne({
       documentNumber: data.documentNumber,
       _id: { $ne: id }, // ignore current document
+      user: req.user.userId,
     });
 
     if (existing) {
