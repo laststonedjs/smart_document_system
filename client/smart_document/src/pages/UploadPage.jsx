@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 // components
 import DocumentReview from "../components/DocumentReview";
@@ -15,6 +15,8 @@ const UploadPage = () => {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const reviewRef = useRef(null);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -41,6 +43,12 @@ const UploadPage = () => {
       );
 
       setResponse(res.data);
+      setTimeout(() => {
+        reviewRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
     } catch (err) {
       console.error(err);
       alert("Upload failed!");
@@ -140,11 +148,16 @@ const UploadPage = () => {
     </div>
 
     {response && (
-      <DocumentReview
-        data={response}
-        onSaved={handleSaved}
-        hideEdit={true}
-      />
+      <div
+        ref={reviewRef}
+        style={{ marginTop: "40px" }}
+      >
+        <DocumentReview
+          data={response}
+          onSaved={handleSaved}
+          hideEdit={true}
+        />
+      </div>
     )}
   </div>
   );
