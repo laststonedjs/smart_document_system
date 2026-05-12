@@ -54,37 +54,99 @@ const UploadPage = () => {
   };
 
   return (
-    <div style={{ padding: "2rem", textAlign: "left" }}>
-      <div style={{ marginBottom: "1rem" }}>
-        <Button
-          onClick={() => navigate("/dashboard")}
-          variant="primary"
-        >
-          Go to Dashboard
-        </Button>
+    <div className="upload-page">
+    <div className="upload-header">
+      <div>
+        <h1>Document Upload</h1>
+        <p>
+          Upload and process your documents
+        </p>
       </div>
 
-      <h2>Upload Document</h2>
-      <div className="upload-btn">
-        <input type="file" onChange={handleFileChange}/>
-
-        <Button
-          onClick={handleUpload} 
-          disabled={loading} 
-          variant="upload"
-        >
-            {loading ? "Uploading..." : "Upload"}
-        </Button>
-      </div>  
-
-      {response && (
-        <DocumentReview 
-          data={response} 
-          onSaved={handleSaved}
-          hideEdit={true} 
-        />
-      )}
+      <Button
+        onClick={() => navigate("/dashboard")}
+        variant="primary"
+      >
+        Dashboard
+      </Button>
     </div>
+
+    <div className="upload-card">
+      <div className="upload-left">
+        <div className="upload-dropzone">
+          <input
+            type="file"
+            onChange={handleFileChange}
+          />
+
+          <div className="upload-placeholder">
+            <div className="upload-icon">
+              ☁️
+            </div>
+
+            <h3>
+              Drop your files here
+            </h3>
+
+            <p>
+              or browse from your computer
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="upload-right">
+        <h3>Upload Details</h3>
+
+        <div className="upload-info">
+          <div className="info-row">
+            <span>File Name</span>
+            <strong>
+              {file ? file.name : "No file selected"}
+            </strong>
+          </div>
+
+          <div className="info-row">
+            <span>File Type</span>
+            <strong>
+              {file
+                ? file.name.split(".").pop()
+                : "-"}
+            </strong>
+          </div>
+
+          <div className="info-row">
+            <span>Status</span>
+            <strong>
+              {loading
+                ? "Uploading..."
+                : "Ready"}
+            </strong>
+          </div>
+        </div>
+
+        <div className="upload-actions">
+          <Button
+            onClick={handleUpload}
+            disabled={loading}
+            variant="upload"
+          >
+            {loading
+              ? "Uploading..."
+              : "Upload Document"}
+          </Button>
+        </div>
+      </div>
+    </div>
+
+    {response && (
+      <DocumentReview
+        data={response}
+        onSaved={handleSaved}
+        hideEdit={true}
+      />
+    )}
+  </div>
   );
 };
 
