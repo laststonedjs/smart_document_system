@@ -1,10 +1,12 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // components
 import DocumentReview from "../components/DocumentReview";
 // helpers
 import { getEndpoint } from "../helpers/getEndpoint";
+// api
+import api from "../services/api";
+import Button from "../components/Button";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -33,16 +35,9 @@ const UploadPage = () => {
     try {
       setLoading(true);
 
-      const token = localStorage.getItem("token");
-
-      const res = await axios.post(
+      const res = await api.post(
         `${API_URL}/api/upload/${type}`,
         formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        }
       );
 
       setResponse(res.data);
@@ -61,21 +56,25 @@ const UploadPage = () => {
   return (
     <div style={{ padding: "2rem", textAlign: "left" }}>
       <div style={{ marginBottom: "1rem" }}>
-        <button
+        <Button
           onClick={() => navigate("/dashboard")}
-          className="btn navigate-btn"
+          variant="primary"
         >
           Go to Dashboard
-        </button>
+        </Button>
       </div>
 
       <h2>Upload Document</h2>
       <div className="upload-btn">
         <input type="file" onChange={handleFileChange}/>
 
-        <button onClick={handleUpload} disabled={loading} className="btn btn-upload">
+        <Button
+          onClick={handleUpload} 
+          disabled={loading} 
+          variant="upload"
+        >
             {loading ? "Uploading..." : "Upload"}
-        </button>
+        </Button>
       </div>  
 
       {response && (

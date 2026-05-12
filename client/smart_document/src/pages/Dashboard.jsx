@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // components
 import DocumentReview from "../components/DocumentReview";
+// api
+import api from "../services/api";
+import Button from "../components/Button";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -26,15 +28,8 @@ const Dashboard = () => {
   });
 
   const fetchDocs = async () => {
-    const token = localStorage.getItem("token");
-
-    const res = await axios.get(
+    const res = await api.get(
       `${API_URL}/api/documents`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        }
-      }
     );
     setDocuments(res.data);
   };
@@ -64,25 +59,26 @@ const Dashboard = () => {
           marginBottom: "1rem",
           display: "flex",
           gap: "1rem",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
+          padding: "0 2rem"
         }}
       >
-        <button
+        <Button
           onClick={() => navigate("/upload")}
-          className="btn navigate-btn"
+          variant="primary"
         >
           Upload New Document
-        </button>
+        </Button>
 
-        <button
+        <Button
           onClick={() => {
             localStorage.removeItem("token");
             navigate("/login");
           }}
-          className="btn btn-cancel"
+          variant="danger"
         >
           Logout
-        </button>
+        </Button>
       </div>
       {/* Filters */}
       <div className="filter-container">
@@ -118,12 +114,12 @@ const Dashboard = () => {
                   <span><strong>Type:</strong> {doc.documentType}</span>
                   <span><strong>Total:</strong> {doc.total} {doc.currency}</span>
               </div>
-              <button
+              <Button
                   onClick={() => setSelectedDoc(doc)}
-                  className="btn view-btn"  
+                  variant="primary"  
               >
                   View
-              </button>
+              </Button>
             </div>
         ))}
       </div>
