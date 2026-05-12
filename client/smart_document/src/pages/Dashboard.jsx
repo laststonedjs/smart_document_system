@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+// components
 import DocumentReview from "../components/DocumentReview";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -9,6 +11,7 @@ const Dashboard = () => {
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   const filteredDocuments = documents.filter((doc) => {
     const matchesStatus =
@@ -56,6 +59,31 @@ const Dashboard = () => {
 
   return (
     <div style={{ padding: "2rem" }}>
+      <div
+        style={{
+          marginBottom: "1rem",
+          display: "flex",
+          gap: "1rem",
+          justifyContent: "space-between"
+        }}
+      >
+        <button
+          onClick={() => navigate("/upload")}
+          className="btn navigate-btn"
+        >
+          Upload New Document
+        </button>
+
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+          className="btn btn-cancel"
+        >
+          Logout
+        </button>
+      </div>
       {/* Filters */}
       <div className="filter-container">
         <input
