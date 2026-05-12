@@ -11,8 +11,6 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-        console.log("API URL:", API_URL);
-        console.log("FULL URL:", `${API_URL}/api/auth/login`);
       const res = await axios.post(
         `${API_URL}/api/auth/login`,
         {
@@ -43,7 +41,7 @@ const LoginPage = () => {
         onSubmit={handleLogin}
         className="auth-form"
       >
-        <h2>Login</h2>
+        <h2 style={{ textAlign: "center" }}>Login</h2>
 
         <input
           type="email"

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+// api
+import api from "../services/api";
+import Button from "./Button";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -82,7 +84,6 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             return;
         }
         try {
-            const token = localStorage.getItem("token");
 
             let payload = {
                 ...editableData,
@@ -93,24 +94,14 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             let res;
 
             if (editableData._id) {
-            res = await axios.put(
+            res = await api.put(
                 `${API_URL}/api/documents/${editableData._id}`,
                 payload,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
             );
             } else {
-            res = await axios.post(
+            res = await api.post(
                 `${API_URL}/api/documents`,
                 payload,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }
             );
             }
 
@@ -237,20 +228,20 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             {/* DEFAULT MODE */}
             {!editMode && (
                 <>
-                <button
+                <Button
                     onClick={handleSave}
-                    className="btn btn-save"
+                    variant="success"
                 >
                     Save to dashboard
-                </button>
+                </Button>
 
                 {!hideEdit && (
-                    <button
+                    <Button
                     onClick={() => setEditMode(true)}
-                    className="edit-btn"
+                    variant="edit"
                 >
                     Edit
-                </button>
+                </Button>
                 )}
                 </>
             )}
@@ -258,22 +249,22 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             {/* EDIT MODE */}
             {editMode && (
                 <>
-                <button
+                <Button
                     onClick={handleSave}
-                    className="btn btn-save"
+                    variant="success"
                 >
                     Confirm
-                </button>
+                </Button>
 
-                <button
+                <Button
                     onClick={() => {
                     setEditableData(data);
                     setEditMode(false);
                     }}
-                    className="btn btn-cancel"
+                    variant="danger"
                 >
                     Cancel
-                </button>
+                </Button>
                 </>
             )}
 
