@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import UploadPage from "./pages/UploadPage";
 import Dashboard from "./pages/Dashboard";
 import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/Register";
 
 function App() {
   const token = localStorage.getItem("token");
@@ -12,6 +13,11 @@ function App() {
         <Route
           path="/login"
           element={<LoginPage />}
+        />
+
+        <Route 
+          path="/register"
+          element={<RegisterPage />}
         />
 
         {token ? (
