@@ -1,17 +1,22 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../services/api";
+import { useNavigate, Link } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
+      setLoading(true);
+      const res = await api.post(
         `${API_URL}/api/auth/login`,
         {
           email,
@@ -21,17 +26,15 @@ const LoginPage = () => {
 
       localStorage.setItem("token", res.data.token);
 
-      window.location.href = "/dashboard";
+      navigate("/dashboard");
 
-      alert("Login successful!");
-
-      console.log(res.data);
     } catch (error) {
       console.error(error);
-
       alert(
         error.response?.data?.message || "Login failed"
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -41,7 +44,14 @@ const LoginPage = () => {
         onSubmit={handleLogin}
         className="auth-form"
       >
-        <h2 style={{ textAlign: "center" }}>Login</h2>
+        <div className="auth-header">
+          <h2>Welcome Back</h2>
+
+          <p>
+            Login to continue using
+            Smart Document System
+          </p>
+        </div>
 
         <input
           type="email"
@@ -61,9 +71,21 @@ const LoginPage = () => {
           }
         />
 
-        <button type="submit">
-          Login
+        <button
+          type="submit"
+          disabled={loading}
+        >
+          {loading
+            ? "Logging in..."
+            : "Login"}
         </button>
+
+        <p className="auth-switch">
+          Don&apos;t have an account?{" "}
+          <Link to="/register">
+            Register
+          </Link>
+        </p>
       </form>
     </div>
   );
