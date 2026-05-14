@@ -637,6 +637,48 @@ code {
   margin-top: 24px;
 }
 
+.navbar {
+  height: 70px;
+  padding: 0 2rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: white;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 1000;
+}
+
+.navbar-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  background: linear-gradient(
+    to right,
+    #be00ee,
+    #850bff
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-content {
+  padding: 1.7rem;
+}
+
 @media (max-width: 900px) {
   .upload-card {
     flex-direction: column;

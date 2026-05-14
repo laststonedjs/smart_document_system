@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 // components
 import DocumentReview from "../components/DocumentReview";
 import Button from "../components/Button";
@@ -13,7 +12,6 @@ const Dashboard = () => {
   const [selectedDoc, setSelectedDoc] = useState(null);
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const navigate = useNavigate();
 
   const filteredDocuments = documents.filter((doc) => {
     const matchesStatus =
@@ -53,34 +51,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <div
-        style={{
-          marginBottom: "1rem",
-          display: "flex",
-          gap: "1rem",
-          justifyContent: "space-between",
-          padding: "0 2rem"
-        }}
-      >
-        <Button
-          onClick={() => navigate("/upload")}
-          variant="primary"
-        >
-          Upload New Document
-        </Button>
-
-        <Button
-          onClick={() => {
-            localStorage.removeItem("token");
-            navigate("/login");
-          }}
-          variant="danger"
-        >
-          Logout
-        </Button>
-      </div>
-      
+    <div>
       {/* Filters */}
       <div className="filter-container">
         <input
@@ -95,9 +66,15 @@ const Dashboard = () => {
           onChange={(e) => setStatusFilter(e.target.value)}
           className="status-select"
         >
-          <option value="all">All</option>
-          <option value="validated">Validated</option>
-          <option value="needs_review">Needs Review</option>
+          <option value="all">
+            All
+          </option>
+          <option value="validated">
+            Validated
+          </option>
+          <option value="needs_review">
+            Needs Review
+          </option>
         </select>
       </div>
 
