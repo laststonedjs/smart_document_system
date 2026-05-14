@@ -52,7 +52,7 @@ MONGO_URI=mongodb_connection_string
 PORT=5000
 
 Run server:
-node src/app.js
+npm run dev
 
 3. Frontend Setup
 cd client/smart-document
