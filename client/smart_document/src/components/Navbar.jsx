@@ -1,4 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom"
+// components
+import UserMenu from "./UserMenu";
 import Button from "./Button"
 
 const Navbar = () => {
@@ -42,18 +44,7 @@ const Navbar = () => {
           </Button>
         )}
 
-        <Button
-          onClick={() => {
-            localStorage.removeItem(
-              "token"
-            );
-
-            navigate("/login");
-          }}
-          variant="danger"
-        >
-          Logout
-        </Button>
+        <UserMenu />
       </div>
     </div>
   )
