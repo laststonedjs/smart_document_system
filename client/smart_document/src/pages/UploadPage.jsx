@@ -8,6 +8,8 @@ import { getEndpoint } from "../helpers/getEndpoint";
 import api from "../services/api";
 import Button from "../components/Button";
 
+import toast from "react-hot-toast";
+
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const UploadPage = () => {
@@ -23,11 +25,11 @@ const UploadPage = () => {
   };
 
   const handleUpload = async () => {
-    if (!file) return alert("Select a file");
+    if (!file) return toast.error("Select a file please");
 
     const type = getEndpoint(file);
     if (!type) {
-        alert("Unsupported file type");
+        toast.error("Unsupported file type");
         return;
     }
 
@@ -51,7 +53,7 @@ const UploadPage = () => {
       }, 100);
     } catch (err) {
       console.error(err);
-      alert("Upload failed!");
+      toast.error("Upload failed!");
     } finally {
       setLoading(false);
     }
@@ -63,21 +65,21 @@ const UploadPage = () => {
 
   return (
     <div className="upload-page">
-    <div className="upload-header">
-      <div>
-        <h1>Document Upload</h1>
-        <p>
-          Upload and process your documents
-        </p>
-      </div>
+      <div className="upload-header">
+        <div>
+          <h1>Document Upload</h1>
+          <p>
+            Upload and process your documents
+          </p>
+        </div>
 
-      <Button
-        onClick={() => navigate("/dashboard")}
-        variant="primary"
-      >
-        Dashboard
-      </Button>
-    </div>
+        <Button
+          onClick={() => navigate("/dashboard")}
+          variant="primary"
+        >
+          Dashboard
+        </Button>
+      </div>
 
     <div className="upload-card">
       <div className="upload-left">

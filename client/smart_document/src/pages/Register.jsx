@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+// api
 import api from "../services/api";
+// components
 import Button from "../components/Button";
+
+import toast from "react-hot-toast";
 
 const API_URL =
   import.meta.env.VITE_API_URL ||
@@ -36,7 +40,7 @@ const RegisterPage = () => {
       formData.password !==
       formData.confirmPassword
     ) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
 
@@ -57,11 +61,12 @@ const RegisterPage = () => {
         res.data.token
       );
 
+      toast.success("Register successful!");
       navigate("/dashboard");
     } catch (error) {
       console.error(error);
 
-      alert(
+      toast.error(
         error.response?.data
           ?.message ||
           "Register failed"
