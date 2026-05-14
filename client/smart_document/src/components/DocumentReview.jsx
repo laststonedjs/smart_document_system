@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // api
 import api from "../services/api";
+// components
 import Button from "./Button";
+
+import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
@@ -80,7 +83,7 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
 
     const handleSave = async () => {
         if (dateError) {
-            alert("Please fix issues before saving");
+            toast.error("Please fix issues before saving");
             return;
         }
         try {
@@ -109,12 +112,12 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             
             if(onSaved) onSaved(res.data);    
 
-            alert("Saved successfully!");
+            toast.success("Saved successfully!");
             navigate("/dashboard");
             setEditMode(false);
             } catch (err) {
                 console.error("Save error:", err);
-                alert("Save failed");
+                toast.error("Save failed");
         }
     };
 

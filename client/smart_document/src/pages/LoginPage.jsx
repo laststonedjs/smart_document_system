@@ -2,6 +2,8 @@ import { useState } from "react";
 import api from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
 
+import toast from "react-hot-toast";
+
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 const LoginPage = () => {
@@ -25,13 +27,16 @@ const LoginPage = () => {
       );
 
       localStorage.setItem("token", res.data.token);
+      toast.success("Login successful!");
 
       navigate("/dashboard");
 
     } catch (error) {
       console.error(error);
-      alert(
-        error.response?.data?.message || "Login failed"
+      
+      toast.error(
+        error.response?.data?.message ||
+        "Login failed"
       );
     } finally {
       setLoading(false);
