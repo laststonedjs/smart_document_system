@@ -690,3 +690,92 @@ code {
     gap: 20px;
   }
 }
+
+.user-menu {
+  position: relative;
+}
+
+.avatar-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;  
+  cursor: pointer;
+
+  background: linear-gradient(
+    to right,
+    #be00ee 0%,
+    #850bff 63%
+  );
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0.2s ease;
+}
+
+.avatar-btn:hover {
+  transform: scale(1.05);
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 240px;
+  background: white;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.12);
+  padding: 0.8rem;
+  z-index: 1000;
+  animation: dropdownFade 0.2s ease;
+}
+
+.user-info {
+  padding: 0.5rem;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #2c3e50;
+  word-break: break-word;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #eee;
+  margin: 0.5rem 0;
+}
+
+.dropdown-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 0.8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: #f4f6f8;
+}
+
+.logout {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
