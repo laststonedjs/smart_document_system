@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 // components
 import DocumentReview from "../components/DocumentReview";
 // helpers
@@ -16,7 +15,6 @@ const UploadPage = () => {
   const [file, setFile] = useState(null);
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const reviewRef = useRef(null);
 
@@ -65,22 +63,6 @@ const UploadPage = () => {
 
   return (
     <div className="upload-page">
-      <div className="upload-header">
-        <div>
-          <h1>Document Upload</h1>
-          <p>
-            Upload and process your documents
-          </p>
-        </div>
-
-        <Button
-          onClick={() => navigate("/dashboard")}
-          variant="primary"
-        >
-          Dashboard
-        </Button>
-      </div>
-
     <div className="upload-card">
       <div className="upload-left">
         <div className="upload-dropzone">
