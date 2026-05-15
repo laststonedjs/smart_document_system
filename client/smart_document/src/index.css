@@ -113,7 +113,8 @@ code {
 .button-group {
   display: flex;
   gap: 12px;
-  margin-top: 12px;
+  margin-top: 2rem;
+  align-items: center;
 }
 
 .main-button {
@@ -185,14 +186,11 @@ code {
 }
 
 .document-container {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   margin-top: 2rem;
-  border: 1px solid #ddd;
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: #ffefef;
-
-  text-align: left;
-  max-width: 700px;
 }
 
 .title {
@@ -203,27 +201,46 @@ code {
 }
 
 .dashboard-title {
-  margin-bottom: 1.5srem;
+  margin-bottom: 1.5rem;
   color: #f8d7da;
   display: flex;
 }
 
 .info-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem;
+  margin-top: 1.5rem;
 }
 
 .row {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
+  gap: 0.4rem;
 }
 
 .label {
-  width: 180px;
-  font-weight: 600;
-  color: #333;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.row span strong {
+  color: #111;
+}
+
+.document-container input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #dcdde1;
+  font-size: 14px;
+  transition: 0.2s ease;
+}
+
+.document-container input:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+  outline: none;
 }
 
 .row input {
@@ -233,12 +250,24 @@ code {
   flex: 1;
 }
 
+.issues-list {
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+
 .no-issues {
-  color: green;
+  color: #16a34a;
+  font-weight: 600;
 }
 
 .issues-list li {
-  color: red;
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  list-style: none;
 }
 
 .dashboard {
