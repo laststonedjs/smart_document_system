@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // api
 import api from "../services/api";
 // components
@@ -12,6 +13,8 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
     const [editableData, setEditableData] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [dateError, setDateError] = useState(null);
+
+    const navigate = useNavigate();
         
     useEffect(() => {
         if (data) {
@@ -110,6 +113,7 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             if(onSaved) onSaved(res.data);    
 
             toast.success("Saved successfully!");
+            navigate("/dashboard");
             setEditMode(false);
             } catch (err) {
                 console.error("Save error:", err);
