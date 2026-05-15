@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 // api
 import api from "../services/api";
 // components
@@ -13,8 +12,6 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
     const [editableData, setEditableData] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [dateError, setDateError] = useState(null);
-
-    const navigate = useNavigate();
         
     useEffect(() => {
         if (data) {
@@ -113,11 +110,33 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             if(onSaved) onSaved(res.data);    
 
             toast.success("Saved successfully!");
-            navigate("/dashboard");
             setEditMode(false);
             } catch (err) {
                 console.error("Save error:", err);
                 toast.error("Save failed");
+        }
+    };
+
+    const handleDelete = async () => {
+        const confirmDelete = window.confirm(
+            "Are you sure you want to delete this document?"
+        );
+
+        if (!confirmDelete) return;
+
+        try {
+            await api.delete(
+                `${API_URL}/api/documents/${editableData._id}`
+            );
+
+            toast.success("Document deleted");
+
+            if (onSaved) await onSaved();
+
+        } catch (error) {
+            console.error(error);
+
+            toast.error("Delete failed");
         }
     };
 
@@ -249,6 +268,15 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
                 </>
             )}
 
+            {editableData._id && !editMode && (
+                <Button
+                    onClick={handleDelete}
+                    variant="danger"
+                >
+                    Delete
+                </Button>
+            )}
+
             {/* EDIT MODE */}
             {editMode && (
                 <>
@@ -278,7 +306,7 @@ const DocumentReview = ({ data, onSaved, hideEdit }) => {
             </div>
         </div>
 
-        <h4>Issues:</h4>
+        <h4>Validation Results:</h4>
         {issues.length === 0 ? (
             <p className="no-issues">No issues!</p>
         ) : (

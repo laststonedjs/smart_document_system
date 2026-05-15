@@ -109,3 +109,33 @@ export const updateDocument = async (req, res) => {
     res.status(500).json({ message: "Update failed" });
   }
 };
+
+export const deleteDocument = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const document = await Document.findOne({
+      _id: id,
+      user: req.user.userId,
+    });
+
+    if (!document) {
+      return res.status(404).json({
+        message: "Document not found",
+      });
+    }
+
+    await document.deleteOne();
+
+    res.json({
+      message: "Document deleted successfully",
+    });
+
+  } catch (error) {
+    console.error("DELETE ERROR:", error);
+
+    res.status(500).json({
+      message: "Failed to delete document",
+    });
+  }
+};

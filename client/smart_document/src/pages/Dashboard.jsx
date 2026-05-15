@@ -37,17 +37,17 @@ const Dashboard = () => {
     fetchDocs();
   }, []);
 
-  useEffect(() => {
-    return () => {
-      setSelectedDoc(null);
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     setSelectedDoc(null);
+  //   };
+  // }, []);
 
-  const closeModal = () => setSelectedDoc(null);
+  // const closeModal = () => setSelectedDoc(null);
 
   const handleSaved = async () => {
-    closeModal();
     await fetchDocs();
+    setSelectedDoc(null);
   };
 
   return (
@@ -111,7 +111,6 @@ const Dashboard = () => {
           justifyContent: "center",
           alignItems: "center",
           zIndex: 1000,
-          pointerEvents: "auto"
         }}>
           <div className="modal-content" style={{
             backgroundColor: "#fff",
@@ -124,7 +123,7 @@ const Dashboard = () => {
             position: "relative",
           }}>
             <button 
-              onClick={closeModal} 
+              onClick={() => setSelectedDoc(null)} 
               style={{
                 position: "absolute",
                 top: "10px",
